@@ -1,0 +1,12 @@
+{
+  "name": "ai-dev-portfolio",
+  "version": "1.0.0",
+  "description": "AI Dev Portfolio",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
+}
