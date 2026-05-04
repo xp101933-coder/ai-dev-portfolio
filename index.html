@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Claude Code・Anthropic APIを使ったAI開発成果物のポートフォリオサイト"/>
+  <meta property="og:title" content="AI Dev Portfolio"/>
+  <meta property="og:description" content="Claude Code・Anthropic APIを使ったAI開発成果物のポートフォリオ"/>
+  <meta property="og:type" content="website"/>
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; style-src 'self'; script-src 'self'; img-src 'self' data:; object-src 'none'"/>
+  <title>AI Dev Portfolio</title>
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header" role="banner">
+    <div class="container header__inner">
+      <a href="#" class="header__logo">AI Dev Portfolio</a>
+      <nav class="header__nav" aria-label="サイトナビゲーション">
+        <a href="#projects" class="header__link">Projects</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- Hero -->
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="container">
+        <span class="hero__badge">Claude Code × Anthropic API</span>
+        <h1 class="hero__title" id="hero-heading">
+          AI で作った、<br/><span>AI のための成果物</span>
+        </h1>
+        <p class="hero__sub">
+          Claude Code・Anthropic SDK を使って構築した<br/>自動化ツール・AIアプリのポートフォリオ
+        </p>
+      </div>
+    </section>
+
+    <!-- Filter -->
+    <section class="filter" aria-label="カテゴリフィルター">
+      <div class="container filter__inner">
+        <nav id="filter-nav" aria-label="プロジェクトカテゴリ"></nav>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section class="projects" aria-label="プロジェクト一覧" id="projects">
+      <div class="container">
+        <div id="projects-grid" role="list" aria-live="polite" aria-label="プロジェクトカード一覧"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Modal -->
+  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden aria-hidden="true">
+    <div class="modal__box">
+      <button id="modal-close" class="modal__close" aria-label="閉じる">✕</button>
+      <img id="modal-img" src="" alt="" class="modal__img" width="640" height="360"/>
+      <div class="modal__content">
+        <div class="modal__header">
+          <span id="modal-emoji" class="modal__emoji" aria-hidden="true"></span>
+          <div>
+            <h2 id="modal-title" class="modal__title"></h2>
+            <span id="modal-cat" class="modal__cat"></span>
+          </div>
+        </div>
+        <p id="modal-description" class="modal__description"></p>
+        <ul id="modal-tags" class="modal__tags" aria-label="使用技術"></ul>
+        <div id="modal-links" class="modal__links"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <p>© <span id="footer-year"></span> AI Dev Portfolio — Built with Claude Code</p>
+    </div>
+  </footer>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
