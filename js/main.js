@@ -1,5 +1,4 @@
-import { PROJECTS } from "./data.js";
-import { CATEGORY_LABELS } from "./types.js";
+import { PROJECTS, CATEGORY_LABELS } from "./data.js";
 function escapeHtml(raw) {
     return raw
         .replace(/&/g, "&amp;")
@@ -40,7 +39,10 @@ function buildCardHtml(p) {
 }
 function attachCardListeners(grid) {
     grid.querySelectorAll(".card").forEach(card => {
-        const id = Number(card.dataset["id"]);
+        const raw = card.dataset["id"];
+        const id = raw !== undefined ? parseInt(raw, 10) : NaN;
+        if (Number.isNaN(id))
+            return;
         card.addEventListener("click", () => openModal(id));
         card.addEventListener("keydown", (e) => {
             if (e.key === "Enter" || e.key === " ") {
@@ -118,7 +120,7 @@ function trapFocus(e) {
     if (e.key !== "Tab")
         return;
     const modal = getEl("modal");
-    const focusable = Array.from(modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])')).filter(el => !el.disabled);
+    const focusable = Array.from(modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])')).filter(el => !("disabled" in el && el.disabled));
     if (!focusable.length)
         return;
     const first = focusable[0];
@@ -136,17 +138,20 @@ function trapFocus(e) {
         }
     }
 }
+let lastFocusedEl = null;
 function openModal(id) {
     const p = PROJECTS.find(x => x.id === id);
     if (!p)
         return;
+    lastFocusedEl = document.activeElement;
     populateModal(p);
     const modal = getEl("modal");
     modal.removeAttribute("hidden");
     modal.setAttribute("aria-hidden", "false");
     document.body.style.overflow = "hidden";
-    getEl("modal-close").focus();
+    document.removeEventListener("keydown", trapFocus);
     document.addEventListener("keydown", trapFocus);
+    getEl("modal-close").focus();
 }
 function closeModal() {
     const modal = getEl("modal");
@@ -154,6 +159,8 @@ function closeModal() {
     modal.setAttribute("aria-hidden", "true");
     document.body.style.overflow = "";
     document.removeEventListener("keydown", trapFocus);
+    lastFocusedEl === null || lastFocusedEl === void 0 ? void 0 : lastFocusedEl.focus();
+    lastFocusedEl = null;
 }
 export function initModal() {
     getEl("modal-close").addEventListener("click", closeModal);

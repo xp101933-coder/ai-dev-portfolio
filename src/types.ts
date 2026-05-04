@@ -18,10 +18,3 @@ export interface Project {
   readonly links: ProjectLinks;
 }
 
-export const CATEGORY_LABELS: Record<FilterKey, string> = {
-  "all":         "All",
-  "claude-code": "Claude Code",
-  "automation":  "Automation",
-  "claude-api":  "Claude API",
-  "web-app":     "Web App",
-} as const;

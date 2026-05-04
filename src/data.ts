@@ -1,4 +1,12 @@
-import type { Project } from "./types.js";
+import type { Project, FilterKey } from "./types.js";
+
+export const CATEGORY_LABELS: Record<FilterKey, string> = {
+  "all":         "All",
+  "claude-code": "Claude Code",
+  "automation":  "Automation",
+  "claude-api":  "Claude API",
+  "web-app":     "Web App",
+} as const;
 
 export const PROJECTS: readonly Project[] = [
   {
